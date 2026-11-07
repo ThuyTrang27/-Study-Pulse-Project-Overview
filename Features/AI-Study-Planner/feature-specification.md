@@ -1,6 +1,5 @@
-# TÀI LIỆU YÊU CẦU NGHIỆP VỤ
 
-# KẾ HOẠCH HỌC TẬP AI – KẾ HOẠCH HỌC TẬP CÁ NHÂN HÓA BẰNG AI
+# AI STUDY PLANNER – KẾ HOẠCH HỌC TẬP CÁ NHÂN HÓA BẰNG AI
 
 ## 1. Tổng quan
 
@@ -188,7 +187,6 @@ Cho phép học sinh cung cấp các thông tin cá nhân và thông tin học t
 - Ngôn ngữ mẹ đẻ
 - Khó khăn khi học
 
-
 **Processing:**
 
 1. Hệ thống truy xuất hồ sơ hiện có của người dùng.
@@ -214,7 +212,7 @@ Cho phép học sinh cung cấp các thông tin cá nhân và thông tin học t
 | BR04 | Liên kết hồ sơ: Thông tin phải được liên kết với đúng tài khoản người dùng. |
 | BR05 | Cập nhật hồ sơ: Người dùng có thể cập nhật thông tin học tập khi cần. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Thiếu thông tin bắt buộc: Hệ thống yêu cầu người dùng cung cấp thông tin còn thiếu.
 - Cấp học không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
@@ -258,7 +256,7 @@ Cho phép học sinh lựa chọn ngôn ngữ mà AI sẽ sử dụng để tạ
 | BR04 | Cập nhật ngôn ngữ: Người dùng có thể thay đổi ngôn ngữ Output. |
 | BR05 | Lưu trữ ngôn ngữ: Lựa chọn phải được lưu và sử dụng trong các bước tiếp theo. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Ngôn ngữ không được hỗ trợ: Hệ thống từ chối lựa chọn.
 - Chưa chọn ngôn ngữ: Hệ thống yêu cầu người dùng chọn ngôn ngữ nếu bắt buộc.
@@ -275,9 +273,9 @@ Cho phép học sinh thiết lập mục tiêu học tập để AI hiểu đư�
 **Input:**
 
 - Mục tiêu học tập.
-- Điểm số mục tiêu (nếu có).
+- Điểm số mục tiêu.
 - Môn học.
-- Discribe mục tiêu (nếu có).
+- Discribe mục tiêu.
 
 **Processing:**
 
@@ -305,7 +303,7 @@ Cho phép học sinh thiết lập mục tiêu học tập để AI hiểu đư�
 | BR05 | Cập nhật mục tiêu: Người dùng có thể cập nhật mục tiêu trước khi xác nhận kế hoạch học tập. |
 | BR06 | Tích hợp mục tiêu vào AI: AI phải sử dụng mục tiêu làm dữ liệu tham khảo khi tạo kế hoạch. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Thiếu mục tiêu: Hệ thống yêu cầu người dùng cung cấp mục tiêu nếu bắt buộc.
 - Điểm số mục tiêu không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
@@ -326,7 +324,7 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 - Các ngày có thể học.
 - Thời gian có thể học.
 - Thời gian học ưa thích.
-- Thời lượng mỗi buổi học (nếu được hỗ trợ).
+- Thời lượng mỗi buổi học.
 - Múi giờ.
 
 **Processing:**
@@ -334,10 +332,9 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 1. Hệ thống hiển thị phần cấu hình ngày thi và lịch học.
 2. Học sinh chọn ngày thi.
 3. Học sinh cấu hình các ngày có thể học.
-4. Học sinh nhập số giờ hoặc khung giờ có thể học.
-5. Hệ thống kiểm tra tính hợp lệ của lịch học.
-6. Hệ thống tính toán khoảng thời gian ôn tập khả dụng.
-7. Hệ thống lưu thông tin lịch học.
+4. Hệ thống kiểm tra tính hợp lệ của lịch học.
+5. Hệ thống tính toán khoảng thời gian ôn tập khả dụng.
+6. Hệ thống lưu thông tin lịch học.
 
 **Output:**
 
@@ -351,14 +348,13 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 | ID   | Business rule |
 | ---- | ----------------- |
 | BR01 | Kiểm tra ngày thi: Ngày thi phải phù hợp với quy định thời gian của hệ thống. |
-| BR02 | Thời gian khả dụng: Người dùng cần cung cấp thời gian có thể học nếu đây là thông tin bắt buộc. |
-| BR03 | Kiểm tra thời gian: Thời gian bắt đầu phải trước thời gian kết thúc. |
-| BR04 | Nhất quán lịch học: Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
-| BR05 | Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
-| BR06 | Cập nhật lịch học: Người dùng có thể cập nhật lịch học và ngày thi. |
-| BR07 | Tích hợp lịch học vào AI: AI phải sử dụng thời gian khả dụng khi phân bổ nội dung học tập. |
+| BR02 | Kiểm tra thời gian: Thời gian bắt đầu phải trước thời gian kết thúc. |
+| BR03 | Nhất quán lịch học: Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
+| BR04 | Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
+| BR05 | Cập nhật lịch học: Người dùng có thể cập nhật lịch học và ngày thi. |
+| BR06 | Tích hợp lịch học vào AI: AI phải sử dụng thời gian khả dụng khi phân bổ nội dung học tập. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Ngày thi không hợp lệ: Hệ thống yêu cầu nhập ngày hợp lệ.
 - Ngày thi đã qua: Hệ thống hiển thị cảnh báo hoặc ngăn xác nhận tùy theo chính sách được cấu hình.
@@ -407,7 +403,7 @@ Cho phép học sinh lựa chọn các phương thức học tập yêu thích �
 | BR05 | Cập nhật lựa chọn: Người dùng có thể thay đổi lựa chọn. |
 | BR06 | Cá nhân hóa bằng AI: AI sử dụng sở thích học tập để đề xuất hình thức nội dung phù hợp. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Chưa chọn phương thức nào: Hệ thống yêu cầu chọn nếu bắt buộc.
 - Phương thức không được hỗ trợ: Hệ thống từ chối lựa chọn.
@@ -451,7 +447,7 @@ Hệ thống sử dụng dữ liệu này để AI xác định mức độ ưu 
 **Output:**
 
 - Mức độ quen thuộc với kiến thức.
-- Đánh giá kiến thức theo từng chủ đề (nếu đánh giá theo từng chủ đề).
+- Đánh giá kiến thức theo từng chủ đề.
 - Trạng thái đánh giá học tập.
 
 **Business rule:**
@@ -465,7 +461,7 @@ Hệ thống sử dụng dữ liệu này để AI xác định mức độ ưu 
 | BR05 | Cập nhật đánh giá: Người dùng có thể cập nhật mức độ hiểu biết. |
 | BR06 | Tích hợp vào AI: AI sử dụng mức độ hiểu biết làm dữ liệu tham khảo để điều chỉnh kế hoạch. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Chưa chọn mức độ: Hệ thống yêu cầu chọn nếu bắt buộc.
 - Không thể lưu dữ liệu đánh giá: Hệ thống thông báo cho người dùng và cho phép thử lại.
@@ -525,7 +521,7 @@ Cho phép học sinh tải lên một hoặc nhiều tài liệu học tập đ�
 | BR06 | Quản lý tài liệu: Người dùng có thể xem hoặc xóa tài liệu đã tải lên trước khi Processing. |
 | BR07 | Hoàn tất tải lên: Chỉ những tài liệu tải lên thành công mới được chuyển sang bước Processing tiếp theo. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Định dạng tệp không được hỗ trợ: Hệ thống từ chối tệp và hiển thị các định dạng được hỗ trợ.
 - Tệp vượt quá giới hạn dung lượng: Hệ thống thông báo cho người dùng và yêu cầu chọn tệp khác.
@@ -598,7 +594,7 @@ Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đ�
 | BR08 | Hạn chế Processing: Chỉ tài liệu đáp ứng điều kiện Processing mới được chuyển sang bước Processing tài liệu bằng AI. |
 | BR09 | Thông báo người dùng: Hệ thống phải thông báo kết quả kiểm tra cho người dùng. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Tệp bị hỏng: Hệ thống đánh dấu tệp là Không hợp lệ.
 - Tài liệu rỗng: Hệ thống thông báo cho người dùng rằng không tìm thấy nội dung đọc được.
@@ -682,7 +678,7 @@ Sử dụng AI để đọc, trích xuất và phân tích nội dung từ các 
 | BR09 | Thông báo lỗi: Người dùng phải được thông báo khi tài liệu không thể đọc hoặc phân tích. |
 | BR10 | Truy vết dữ liệu: Nội dung trích xuất cần duy trì liên kết với tài liệu nguồn. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Định dạng tài liệu không được hỗ trợ: Hệ thống dừng Processing và báo lỗi.
 - Lỗi OCR: Hệ thống đánh dấu việc trích xuất là thất bại hoặc chưa đầy đủ.
@@ -748,7 +744,7 @@ Sử dụng AI để phân loại và tổ chức các kiến thức được tr
 | BR09 | Cấu trúc phân cấp: Danh sách kiến thức phải hỗ trợ cấu trúc chủ đề chính và chủ đề con. |
 | BR10 | Trình tự học: Thứ tự học được đề xuất dựa trên cấu trúc kiến thức và quan hệ tiên quyết. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Nội dung trích xuất không đủ: Hệ thống yêu cầu bổ sung tài liệu.
 - Chủ đề không nhận diện được: Hệ thống đánh dấu nội dung để xem xét.
@@ -827,7 +823,7 @@ Tạo danh sách chủ đề học tập từ kết quả phân loại của AI 
 | BR09 | Xác nhận chủ đề: Chỉ danh sách đã được người dùng xác nhận mới được chuyển sang bước tạo kế hoạch học tập. |
 | BR10 | Lưu chủ đề: Danh sách đã xác nhận phải được lưu để phục vụ các bước tiếp theo. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Danh sách chủ đề rỗng: Hệ thống yêu cầu bổ sung nội dung hoặc tạo chủ đề thủ công.
 - Thêm chủ đề trùng lặp: Hệ thống cảnh báo người dùng về chủ đề trùng lặp.
@@ -877,7 +873,7 @@ Cho phép học sinh lựa chọn các chủ đề cần tập trung nhiều nh�
 | BR05 | Cập nhật mức ưu tiên: Người dùng có thể thay đổi mức độ ưu tiên trước khi tạo hoặc xác nhận kế hoạch. |
 | BR06 | Tích hợp mức ưu tiên vào AI: AI phải sử dụng mức độ ưu tiên khi phân bổ thời gian học. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Chưa chọn chủ đề ưu tiên: Hệ thống áp dụng chính sách ưu tiên mặc định hoặc yêu cầu chọn, tùy theo cấu hình.
 - Mức ưu tiên không hợp lệ: Hệ thống yêu cầu chọn lại cho hợp lệ.
@@ -965,7 +961,7 @@ Sử dụng AI để xây dựng lịch học tập cá nhân hóa bằng cách 
 | BR12 | Minh bạch khi tạo kế hoạch: Hệ thống cần hiển thị thông tin về lịch học và nội dung được đề xuất. |
 | BR13 | Tạo lại: Người dùng có thể yêu cầu AI tạo lại kế hoạch khi điều chỉnh các dữ liệu đầu vào. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Không đủ thời gian học: AI thông báo cho học sinh rằng thời gian khả dụng có thể không đủ để bao phủ tất cả các chủ đề.
 - Ngày thi quá gần: AI tạo kế hoạch rút gọn nếu khả thi và thông báo cho học sinh về hạn chế.
@@ -1039,7 +1035,7 @@ Cho phép học sinh xem xét, điều chỉnh, xác nhận và lưu kế hoạc
 | BR08 | Cập nhật kế hoạch: Người dùng có thể cập nhật kế hoạch sau khi lưu nếu hệ thống hỗ trợ. |
 | BR09 | Tích hợp hạ nguồn: Kế hoạch đã lưu có thể được sử dụng bởi các tính năng quản lý nhiệm vụ và theo dõi tiến độ học tập. |
 
-**Processing ngoại lệ:**
+**Exception Handling:**
 
 - Kế hoạch học tập rỗng: Hệ thống ngăn việc xác nhận và yêu cầu tạo lại.
 - Điều chỉnh lịch không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
