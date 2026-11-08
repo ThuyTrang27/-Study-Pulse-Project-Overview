@@ -65,8 +65,6 @@ AI Learning Partner gồm **8 chức năng nhỏ**:
 
 ![AI Learning Partner User Flow](assets/feature01-user-flow.png)
 
-**Tài liệu tham khảo giao diện:** MindKoi — AI Study Companion by Margo Semenova trên Dribbble.
-
 ## 4. Functional Description – Mô tả chức năng
 
 ### ALP-01: Enter Question / Topic – Nhập câu hỏi hoặc chủ đề
