@@ -75,7 +75,7 @@ Kế hoạch học tập AI được phân rã thành 5 nhóm nghiệp vụ chí
 
 ## 2.5. Tạo kế hoạch học tập bằng AI
 
-| ID | Chức năng nhỏ | Discribe nghiệp vụ |
+| ID | Chức năng nhỏ | Mô tả nghiệp vụ |
 | --- | --- | --- |
 | ASP-13 | Tạo lịch học bằng AI | AI phân bổ các chủ đề vào lịch học dựa trên mục tiêu, ngày thi và thời gian rảnh. |
 | ASP-14 | Xem xét và lưu kế hoạch học tập | Cho phép người dùng xem xét, điều chỉnh, xác nhận và lưu kế hoạch học tập. |
