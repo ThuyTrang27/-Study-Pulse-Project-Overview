@@ -43,7 +43,7 @@ Kế hoạch học tập AI được phân rã thành 5 nhóm nghiệp vụ chí
 
 ## 2.1. Thiết lập thông tin học tập
 
-| ID | Chức năng nhỏ | Discribe nghiệp vụ |
+| ID | Chức năng nhỏ | Mô tả nghiệp vụ |
 | --- | --- | --- |
 | ASP-01 | Thu thập thông tin học tập | Thu thập thông tin học tập cá nhân của người dùng. |
 | ASP-02 | Lựa chọn ngôn ngữ Output | Lựa chọn ngôn ngữ sử dụng khi AI tạo nội dung học tập. |
@@ -54,20 +54,20 @@ Kế hoạch học tập AI được phân rã thành 5 nhóm nghiệp vụ chí
 
 ## 2.2. Quản lý tài liệu học tập
 
-| ID | Chức năng nhỏ | Discribe nghiệp vụ |
+| ID | Chức năng nhỏ | Mô tả nghiệp vụ |
 | --- | --- | --- |
 | ASP-07 | Tải lên tài liệu học tập | Cho phép người dùng tải một hoặc nhiều tài liệu học tập lên hệ thống. |
 | ASP-08 | Kiểm tra tệp | Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đọc của tài liệu. |
 
 ## 2.3. Xử lý tài liệu bằng AI
 
-| ID | Chức năng nhỏ | Discribe nghiệp vụ |
+| ID | Chức năng nhỏ | Mô tả nghiệp vụ |
 | --- | --- | --- |
 | ASP-09 | Phân tích tài liệu bằng AI | AI đọc, trích xuất, phân tích và đánh giá khả năng sử dụng của tài liệu. |
 
 ## 2.4. Quản lý chủ đề kiến thức
 
-| ID | Chức năng nhỏ | Discribe nghiệp vụ |
+| ID | Chức năng nhỏ | Mô tả nghiệp vụ |
 | --- | --- | --- |
 | ASP-10 | Phân loại và tổ chức chủ đề | Phân loại, nhóm và sắp xếp các chủ đề kiến thức theo cấu trúc logic. |
 | ASP-11 | Tạo và xem xét danh sách chủ đề | Tạo danh sách chủ đề, cho phép người dùng xem xét, chỉnh sửa và xác nhận. |
@@ -171,7 +171,7 @@ flowchart TD
 
 ---
 
-# 4. Discribe chức năng
+# 4. Mô tả chức năng
 
 ## ASP-01. Thu thập thông tin học tập
 
