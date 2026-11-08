@@ -723,59 +723,71 @@ Sử dụng AI để phân loại và tổ chức các kiến thức được tr
 
 **Input:**
 
-- Nội dung văn bản đã trích xuất.
+- Nội dung văn bản đã trích xuất từ bước phân tích tài liệu.
 - Nội dung tài liệu có cấu trúc.
 - Các chương và phần đã nhận diện.
 - Môn học đã chọn.
-- Ngôn ngữ Output.
+- Ngôn ngữ đầu ra.
+- Mục tiêu và ngày thi
+- Mức hiểu biết hiện tại
 
 **Processing:**
 
-1. AI nhận nội dung đã trích xuất.
+1. AI nhận nội dung đã trích xuất và kiểm tra đủ điều kiện xử lý.
 2. AI xác định các chủ đề kiến thức.
-3. AI xác định chủ đề chính và chủ đề con.
-4. AI xác định mỗi chủ đề thuộc chương nào.
-5. AI nhóm các kiến thức có liên quan.
-6. AI phân biệt các chủ đề khác nhau.
-7. AI xác định mối quan hệ giữa các chủ đề.
-8. AI xác định kiến thức tiên quyết khi áp dụng.
-9. AI xác định trình tự học hợp lý.
-10. AI phát hiện các chủ đề trùng lặp hoặc chồng chéo.
-11. AI tổ chức các chủ đề thành cấu trúc phân cấp.
+3. AI phát hiện và loại bỏ chủ đề trùng lặp hoặc chồng chéo; phân biệt các chủ đề khác nhau.
+4. AI xác định chủ đề chính và chủ đề con.
+5. AI xác định mỗi chủ đề thuộc chương nào, nếu tài liệu không có chương, tự nhóm theo nội dung.
+6. AI nhóm các kiến thức có liên quan.
+7. AI tổ chức thành cấu trúc phân cấp Chương → Chủ đề → Ý nhỏ.
+8. AI đặt tên chủ đề ngắn gọn, nhất quán, đúng ngôn ngữ đầu ra.
+9. AI xác định mối quan hệ giữa các chủ đề và kiến thức tiên quyết.
+10. AI xác định trình tự học hợp lý.
+11. AI xác định độ khó và mức quan trọng của từng chủ đề.
+12. AI ước tính thời lượng học mỗi chủ đề.
+13. Hệ thống gán mức thành thạo ban đầu.
+14. AI gán mức ưu tiên theo mục tiêu, ngày thi và chủ đề yếu.
+15. Hệ thống kiểm tra nhất quán.
 
 **Output:**
 
 - Danh sách chủ đề đã phân loại.
-- Các chủ đề chính.
-- Các chủ đề con.
+- Các chủ đề chính và chủ đề con.
 - Cấu trúc chủ đề theo chương.
-- Mối quan hệ giữa các chủ đề.
-- Quan hệ tiên quyết.
 - Trình tự học đề xuất.
+- Độ khó và mức quan trọng của từng chủ đề
+- Thời lượng học ước tính của từng chủ đề
+- Mức thành thạo ban đầu
+- Mức ưu tiên của từng chủ đề
+- Bộ chủ đề đã chuẩn hóa
+- Mối quan hệ giữa các chủ đề.
+- Thông báo kết quả
 
 **Business rule:**
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Yêu cầu nguồn: Chỉ phân loại nội dung đã được trích xuất thành công hoặc đủ điều kiện sử dụng. |
+| BR01 | Chỉ phân loại nội dung đã qua bước Kiểm tra tệp và trích xuất văn bản thành công. |
 | BR02 | Phân loại theo môn học: Chủ đề phải được liên kết với môn học phù hợp. |
 | BR03 | Phân loại theo chương: AI cần phân loại chủ đề theo chương nếu tài liệu cung cấp cấu trúc chương. |
 | BR04 | Nhóm chủ đề: Các kiến thức có liên quan cần được nhóm thành những chủ đề phù hợp. |
-| BR05 | Phân biệt chủ đề: Các chủ đề khác nhau phải được phân biệt rõ ràng. |
-| BR06 | Xác định mối quan hệ: AI cần xác định mối quan hệ giữa các chủ đề khi có đủ dữ liệu. |
-| BR07 | Xác định kiến thức tiên quyết: AI cần xác định kiến thức tiên quyết khi có mối quan hệ phụ thuộc. |
-| BR08 | Processing chủ đề trùng lặp: Các chủ đề trùng lặp cần được đánh dấu hoặc hợp nhất theo quy tắc hệ thống. |
-| BR09 | Cấu trúc phân cấp: Danh sách kiến thức phải hỗ trợ cấu trúc chủ đề chính và chủ đề con. |
+| BR05 | Mỗi chủ đề phải có tên và phạm vi nội dung riêng, không có hai chủ đề trùng tên |
+| BR06 | AI cần xác định mối quan hệ giữa các chủ đề khi có đủ dữ liệu, nếu không đủ dữ liệu, giữ nguyên thứ tự xuất hiện trong tài liệu gốc |
+| BR07 | Xác định kiến thức tiên quyết: AI cần xác định kiến thức tiên quyết khi có mối quan hệ phụ thuộc, kiến thức tiên quyết là loại quan hệ bắt buộc học trước|
+| BR08 | Xử lý chủ đề trùng lặp: Các chủ đề trùng lặp cần được đánh dấu hoặc hợp nhất theo quy tắc hệ thống. |
+| BR09 | Cấu trúc phân cấp: Danh sách kiến thức phải hỗ trợ cấu trúc chủ đề chính và chủ đề con.|
 | BR10 | Trình tự học: Thứ tự học được đề xuất dựa trên cấu trúc kiến thức và quan hệ tiên quyết. |
 
 **Exception Handling:**
 
 - Nội dung trích xuất không đủ: Hệ thống yêu cầu bổ sung tài liệu.
-- Chủ đề không nhận diện được: Hệ thống đánh dấu nội dung để xem xét.
+- Chủ đề không nhận diện được: Người dùng xem xét và chọn giữ lại, bỏ qua hoặc gán vào chủ đề khác.
 - Cấu trúc chương không rõ ràng: AI tổ chức chủ đề dựa trên nội dung hiện có và đánh dấu các phân loại chưa chắc chắn.
 - Chủ đề trùng lặp: Hệ thống xác định các chủ đề có khả năng trùng lặp để xem xét.
 - Không phát hiện quan hệ tiên quyết: Hệ thống giữ các chủ đề độc lập.
 - Lỗi phân loại của AI: Hệ thống cho phép Processing lại.
+- Không xác định được môn học: Cảnh báo, yêu cầu người dùng chọn môn thủ công
+- Nội dung trích xuất chất lượng thấp: Cảnh báo độ tin cậy thấp, cho người dùng chỉnh văn bản hoặc tải lại
 
 ---
 
@@ -787,50 +799,57 @@ Tạo danh sách chủ đề học tập từ kết quả phân loại của AI 
 
 **Input:**
 
-- Danh sách chủ đề đã phân loại.
-- Các chủ đề chính.
-- Các chủ đề con.
-- Thông tin chương.
-- Discribe chủ đề.
+- Bộ chủ đề đã đã chuẩn hoá từ tính năng phân loại và tổ chức chủ đề.
+- Mô tả chủ đề.
+- Thuộc tính chủ đề: Độ khó, mức quan trọng, thời lượng ước tính, mức thành thạo ban đầu, mức ưu tiên
+- Thiết lập của người dùng: Mục tiêu, ngày thi, quỹ thời gian, ngôn ngữ đầu ra.
 - Hướng dẫn học tập (tùy chọn).
+- Thao tác xem xét của học sinh: Giữ, bỏ, đổi tên, gộp, đổi thứ tự, thêm chủ đề, xác nhận.
 
 **Processing:**
 
 **A. Tạo danh sách chủ đề**
 
-1. Hệ thống nhận các chủ đề đã phân loại.
-2. Hệ thống tạo danh sách chủ đề có cấu trúc.
-3. Hệ thống nhóm chủ đề theo môn học và chương.
-4. Hệ thống tạo Discribe ngắn cho từng chủ đề.
-5. Hệ thống hiển thị danh sách chủ đề cho học sinh.
+1. Hệ thống nhận các chủ đề đã phân loại và kiểm tra đủ điều kiện (không rỗng, đúng cấu trúc)
+2. Hệ thống tạo danh sách chủ đề có cấu trúc
+3. Hệ thống hiển thị danh sách theo nhóm môn học và chương
+4. AI tạo mô tả ngắn cho từng chủ đề, bằng ngôn ngữ đầu ra
+5. Hệ thống gắn thông tin cho từng chủ đề (thời lượng, độ khó, mức thành thạo, mức ưu tiên).
+6. Hệ thống tính tổng thời lượng, so với quỹ thời gian, và đánh dấu mục cần chú ý.
+7. Hệ thống hiển thị danh sách cho học sinh
 
 **B. Xem xét chủ đề**
 
 1. Học sinh xem xét danh sách chủ đề đã tạo.
 2. Học sinh xem chi tiết chủ đề.
-3. Học sinh xác định các chủ đề còn thiếu hoặc không cần thiết.
+3. Học sinh xác định các chủ đề còn thiếu hoặc không cần thiết, có hỗ trợ từ các mục hệ thống đã đánh dấu.
 
 **C. Chỉnh sửa chủ đề**
 
 1. Học sinh thêm chủ đề mới.
 2. Học sinh chỉnh sửa tên chủ đề.
-3. Học sinh chỉnh sửa Discribe chủ đề.
-4. Học sinh thêm hướng dẫn học tập.
+3. Học sinh chỉnh sửa mô tả chủ đề.
+4. Học sinh thêm hướng dẫn học tập cho chủ đề
 5. Học sinh xóa các chủ đề không cần thiết.
-6. Học sinh sắp xếp lại các chủ đề nếu được hỗ trợ.
+6. Hệ thống cập nhật tức thời tổng thời lượng và cảnh báo sau mỗi thay đổi.
+7. Học sinh hoàn tác hoặc đặt lại về danh sách AI gốc
 
 **D. Xác nhận chủ đề**
 
 1. Hệ thống kiểm tra tính hợp lệ của danh sách chủ đề đã chỉnh sửa.
 2. Học sinh xác nhận danh sách chủ đề cuối cùng.
 3. Hệ thống lưu các chủ đề đã xác nhận.
+4. Hệ thống chuyển danh sách đã xác nhận cho bước tạo lộ trình và thông báo kết quả
 
 **Output:**
 
 - Danh sách chủ đề đã tạo.
+- Tóm tắt khối lượng và cảnh báo	
 - Danh sách chủ đề đã cập nhật.
 - Danh sách chủ đề đã xác nhận.
+- Hướng dẫn học tập theo chủ đề	
 - Trạng thái xác nhận danh sách chủ đề.
+- Thông báo kết quả (Thành công, cảnh báo hoặc lỗi).
 
 **Business rule:**
 
@@ -873,18 +892,27 @@ Cho phép học sinh lựa chọn các chủ đề cần tập trung nhiều nh�
 
 **Processing:**
 
-1. Hệ thống hiển thị danh sách chủ đề đã xác nhận.
+1. Hệ thống nhận và kiểm tra danh sách chủ đề đã xác nhận (không rỗng), rồi hiển thị danh sách.
 2. Học sinh chọn các chủ đề cần dành nhiều sự chú ý hơn.
-3. Học sinh gán mức độ ưu tiên nếu được hỗ trợ.
-4. Hệ thống ghi nhận các mức ưu tiên đã chọn.
-5. Hệ thống liên kết mức ưu tiên với các chủ đề tương ứng.
-6. AI nhận thông tin ưu tiên.
+3. Hệ thống ghi nhận các mức ưu tiên đã chọn, liên kết mức ưu tiên với các chủ đề tương ứng.
+4. Hệ thống tính tỷ lệ thời gian dành cho trọng tâm so với quỹ thời gian còn lại.
+5. Hệ thống hiển thị tỷ lệ thời gian và cảnh báo
+6. Học sinh điều chỉnh nếu cần (quay lại bước 2) hoặc xác nhận trọng tâm.
+7. Hệ thống lưu trọng tâm đã xác nhận
+8. Hệ thống chuyển thông tin ưu tiên cho AI tạo lộ trình
+9. AI nhận thông tin ưu tiên.
+10. Hệ thống thông báo kết quả
 
 **Output:**
 
 - Các chủ đề ưu tiên đã chọn.
 - Mức độ ưu tiên của chủ đề.
 - Tùy chọn trọng tâm học tập.
+- Tỷ lệ thời gian dành cho trọng tâm.
+- Cấu hình trọng tâm học tập đã lưu.
+- Trạng thái xác nhận trọng tâm
+- Đầu vào cho AI tạo lộ trình.
+- Thông báo kết quả
 
 **Business rule:**
 
@@ -919,30 +947,28 @@ Sử dụng AI để xây dựng lịch học tập cá nhân hóa bằng cách 
 - Mục tiêu học tập.
 - Điểm số mục tiêu.
 - Ngày thi.
-- Lịch học khả dụng.
+- Lịch học khả dụng (thời khóa biểu trên trường, khung giờ tự học, ngày nghỉ/bận).
 - Phương thức học tập ưa thích.
 - Mức độ quen thuộc với kiến thức.
 - Các chủ đề ưu tiên đã chọn.
 - Quan hệ tiên quyết.
-- Ngôn ngữ Output.
+- Ngôn ngữ đầu ra.
 
 **Processing:**
 
 **A. Phân tích dữ liệu học tập**
 
-1. AI nhận toàn bộ thông tin học tập đã xác nhận.
+1. AI nhận thông tin đã xác nhận và kiểm tra đủ điều kiện.
 2. AI phân tích mục tiêu học tập và điểm số mục tiêu.
-3. AI tính toán khoảng thời gian ôn tập khả dụng.
-4. AI phân tích số lượng chủ đề và khối lượng học tập ước tính.
-5. AI đánh giá mức độ ưu tiên và mức độ hiểu biết đối với từng chủ đề.
-6. AI xác định các quan hệ tiên quyết.
+3. AI đánh giá khối lượng học tập: số chủ đề, thời gian cần thiết cho từng chủ đề
+4. AI đánh giá mức ưu tiên và mức thành thạo của từng chủ đề, và đọc quan hệ tiên quyết đã xác định
 
 **B. Phân bổ thời gian học**
 
-1. AI xác định các buổi học khả dụng.
-2. AI ước tính thời gian cần thiết cho từng chủ đề.
+1. AI tính quỹ thời gian khả dụng và tách thành các buổi học khả dụng
+2. AI ước tính thời gian cần thiết cho từng chủ đề, AI so sánh nhu cầu với quỹ thời gian, nếu thiếu, rút gọn theo ưu tiên, nếu dư, bổ sung luyện đề.
 3. AI ưu tiên các chủ đề cần dành nhiều sự chú ý hơn.
-4. AI phân bổ các chủ đề vào các buổi học khả dụng.
+4. AI phân bổ chủ đề vào các buổi học khả dụng, đảm bảo chủ đề tiên quyết đứng trước.
 5. AI sắp xếp các chủ đề theo mối quan hệ phụ thuộc trong học tập.
 6. AI dành thời gian ôn tập hoặc thực hành khi phù hợp.
 7. AI kiểm tra xung đột lịch.
@@ -954,7 +980,8 @@ Sử dụng AI để xây dựng lịch học tập cá nhân hóa bằng cách 
 3. AI liên kết mỗi buổi học với các chủ đề học tập tương ứng.
 4. AI đề xuất phương thức học dựa trên sở thích của học sinh.
 5. AI tạo mục tiêu học tập dự kiến cho từng buổi học.
-6. Hệ thống hiển thị kế hoạch học tập đã tạo.
+6. Mỗi bài học AI tạo bài kiểm tra nhỏ để học sinh ôn tập lại.
+7. Hệ thống hiển thị kế hoạch học tập đã tạo.
 
 **Output:**
 
@@ -964,37 +991,47 @@ Sử dụng AI để xây dựng lịch học tập cá nhân hóa bằng cách 
 - Thông tin buổi học.
 - Các hoạt động học tập đề xuất.
 - Thời lượng học ước tính.
-- Mục tiêu học tập.
-- Trạng thái tạo kế hoạch.
+- Mục tiêu học tập từng buổi học.
+- Kế hoạch học tập cá nhân hóa (bản nháp).
+- Trạng thái tạo kế hoạch (Đang tạo / Hoàn tất / Hoàn tất kèm cảnh báo / Thất bại).
 
 **Business rule:**
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Đầy đủ dữ liệu Input: AI chỉ tạo kế hoạch khi có đủ các dữ liệu bắt buộc theo cấu hình hệ thống. |
+| BR01 | Đầy đủ dữ liệu Input: AI chỉ tạo kế hoạch khi có đủ các dữ liệu bắt buộc theo cấu hình hệ thống (chủ đề đã xác nhận, lịch học khả dụng, ngày thi). |
 | BR02 | Chủ đề đã xác nhận: AI chỉ sử dụng danh sách chủ đề đã được xác nhận. |
-| BR03 | Hạn chót ngày thi: Kế hoạch phải xem xét ngày thi và khoảng thời gian ôn tập còn lại. |
+| BR03 | Hạn chót ngày thi: Mọi buổi học phải kết thúc trước ngày thi. |
 | BR04 | Thời gian khả dụng: Thời gian học được phân bổ phải nằm trong khoảng thời gian người dùng đã cung cấp. |
-| BR05 | Ưu tiên chủ đề: Các chủ đề có mức độ ưu tiên cao cần được xem xét phân bổ thời gian phù hợp. |
-| BR06 | Mức độ hiểu biết: AI cần xem xét mức độ hiểu biết của học sinh khi ước lượng thời gian và độ khó. |
+| BR05 | Ưu tiên chủ đề: Chủ đề ưu tiên cao nhận nhiều thời gian hơn chủ đề ưu tiên thấp. |
+| BR06 | Mức độ hiểu biết: Chủ đề ở mức gặp khó khăn nhận nhiều thời gian hơn chủ đề ở mức thành thạo; chủ đề thành thạo chỉ xếp ôn lặp |
 | BR07 | Thứ tự tiên quyết: Các chủ đề có quan hệ tiên quyết cần được sắp xếp theo thứ tự học phù hợp. |
-| BR08 | Sở thích học tập: AI cần xem xét sở thích học tập khi đề xuất hoạt động học. |
-| BR09 | Phân bổ khối lượng: AI cần phân bổ khối lượng học tập hợp lý trong khoảng thời gian khả dụng. |
+| BR08 | Sở thích học tập: Mỗi buổi học dùng phương thức học học sinh đã chọn phù hợp với các kiến thức |
+| BR09 | Phân bổ khối lượng: AI cần phân bổ khối lượng học tập không vượt thời lượng tối đa mỗi buổi và mỗi ngày trong khoảng thời gian khả dụng. |
 | BR10 | Xung đột lịch: Các buổi học không được xung đột với lịch đã được xác định. |
 | BR11 | Tính đầy đủ của kế hoạch: Kế hoạch cần bao phủ các chủ đề được xác nhận hoặc thông báo rõ những chủ đề chưa được phân bổ. |
-| BR12 | Minh bạch khi tạo kế hoạch: Hệ thống cần hiển thị thông tin về lịch học và nội dung được đề xuất. |
+| BR12 | Hệ thống cần hiển thị: ngày, giờ, chủ đề, thời lượng, phương thức, mục tiêu buổi và giải thích cách xếp lịch. |
 | BR13 | Tạo lại: Người dùng có thể yêu cầu AI tạo lại kế hoạch khi điều chỉnh các dữ liệu đầu vào. |
+| BR14 | Mục tiêu từng buổi: Mỗi buổi học có mục tiêu học tập dự kiến. |
+| BR15 | Kế hoạch do AI tạo là bản nháp; chỉ chính thức sau khi học sinh xác nhận và lưu. |
+| BR16 | Ngôn ngữ hiển thị: Kế hoạch hiển thị bằng ngôn ngữ đầu ra đã chọn. |
+| BR17 | Hướng dẫn học tập: AI dùng hướng dẫn học tập của học sinh khi xếp lịch. |
+| BR18 | Thông báo kết quả: Hệ thống thông báo thành công, cảnh báo hoặc lỗi sau mỗi lần tạo. |
 
 **Exception Handling:**
 
-- Không đủ thời gian học: AI thông báo cho học sinh rằng thời gian khả dụng có thể không đủ để bao phủ tất cả các chủ đề.
-- Ngày thi quá gần: AI tạo kế hoạch rút gọn nếu khả thi và thông báo cho học sinh về hạn chế.
-- Lịch học xung đột: Hệ thống xác định các khung giờ không khả dụng hoặc chồng lấn.
-- Quá nhiều chủ đề học tập: AI ưu tiên các chủ đề và xác định những chủ đề không thể xếp lịch.
-- Thiếu thông tin chủ đề: Hệ thống yêu cầu học sinh hoàn thiện danh sách chủ đề.
+- Không đủ thời gian học: AI thông báo thời gian có thể không đủ; tự rút gọn theo mức ưu tiên, nêu rõ chủ đề bị rút gọn, gợi ý tăng giờ học.
+- Ngày thi quá gần: AI tạo kế hoạch rút gọn nếu khả thi (chỉ chủ đề ưu tiên Cao và yếu) và thông báo cho học sinh về hạn chế.
+- Lịch học xung đột: Hệ thống chỉ rõ các khung giờ chồng lấn, tự loại khỏi quỹ thời gian và yêu cầu học sinh xác nhận lại.
+- Quá nhiều chủ đề học tập: AI xếp theo ưu tiên, đánh dấu chủ đề chưa xếp lịch và cho học sinh chọn: bỏ, tăng thời gian, hoặc xếp sang giai đoạn sau
+- Thiếu thông tin chủ đề: Danh sách rỗng hoặc chưa xác nhận: chặn, yêu cầu quay lại bước xem xét danh sách chủ đề. Thiếu thuộc tính (thời lượng, độ khó): dùng giá trị mặc định và cảnh báo.
 - Lỗi tạo kế hoạch của AI: Hệ thống giữ lại thông tin đầu vào và cho phép thử lại.
-- Không có lịch khả thi: Hệ thống giải thích xung đột và yêu cầu học sinh điều chỉnh thời gian học khả dụng hoặc mục tiêu học tập.
+- Kết quả AI vi phạm quy tắc: Hệ thống kiểm tra sau khi tạo, tự điều chỉnh hoặc tạo lại; không hiển thị lịch sai.
+- Không có lịch khả thi: Hệ thống giải thích nguyên nhân, yêu cầu điều chỉnh lịch khả dụng hoặc mục tiêu; đề xuất lịch tối thiểu để học sinh chọn.
 - Quan hệ tiên quyết không nhất quán: AI đánh dấu các quan hệ chưa chắc chắn để xem xét thay vì ép một trình tự sai.
+- Thiếu ngày thi: Cho nhập ngày, hoặc tạo lịch không theo hạn.
+- Thiếu lịch học khả dụng: Dùng giá trị mặc định và cảnh báo.
+- Học sinh đổi đầu vào sau khi lịch đã tạo: Đánh dấu lịch cũ lỗi thời, hỏi có tạo lại không; giữ tiến độ đã hoàn thành.
 
 ---
 
@@ -1006,12 +1043,15 @@ Cho phép học sinh xem xét, điều chỉnh, xác nhận và lưu kế hoạc
 
 **Input:**
 
-- Kế hoạch học tập đã tạo.
-- Lịch học.
-- Các buổi học.
-- Các hoạt động học tập.
+- Kế hoạch học tập bản nháp do AI đã tạo (gồm lịch, buổi học, hoạt động, mục tiêu từng buổi, thời lượng).
+- Danh sách chủ đề đã xác nhận.
+- Ngày thi.
+- Lịch học khả dụng và thời khóa biểu.
+- Giới hạn thời lượng mỗi buổi/ngày.
 - Các điều chỉnh của học sinh.
 - Trạng thái xác nhận.
+- Các điều chỉnh của học sinh.
+- Hành động xác nhận kế hoạch.
 
 **Processing:**
 
@@ -1049,7 +1089,7 @@ Cho phép học sinh xem xét, điều chỉnh, xác nhận và lưu kế hoạc
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Xem kế hoạch: Người dùng phải có khả năng xem kế hoạch do AI tạo ra. |
+| BR01 | Xem kế hoạch: Người dùng phải xem được kế hoạch do AI tạo ra. |
 | BR02 | Tùy chỉnh kế hoạch: Người dùng được phép điều chỉnh kế hoạch trong phạm vi hệ thống hỗ trợ. |
 | BR03 | Kiểm tra lịch: Những thay đổi về thời gian phải được kiểm tra tính hợp lệ. |
 | BR04 | Xác nhận kế hoạch: Kế hoạch chỉ được lưu thành kế hoạch chính thức sau khi người dùng xác nhận. |
@@ -1058,6 +1098,10 @@ Cho phép học sinh xem xét, điều chỉnh, xác nhận và lưu kế hoạc
 | BR07 | Trạng thái kế hoạch: Hệ thống phải quản lý trạng thái kế hoạch, ví dụ Nháp, Đã xác nhận, Đang áp dụng. |
 | BR08 | Cập nhật kế hoạch: Người dùng có thể cập nhật kế hoạch sau khi lưu nếu hệ thống hỗ trợ. |
 | BR09 | Tích hợp hạ nguồn: Kế hoạch đã lưu có thể được sử dụng bởi các tính năng quản lý nhiệm vụ và theo dõi tiến độ học tập. |
+| BR10 | Không sửa quá khứ: Không sửa buổi học đã hoàn thành hoặc đã qua. |
+| BR11 | Chống trùng: Mỗi môn chỉ có một kế hoạch Đang áp dụng; xác nhận lặp không tạo bản sao. |
+| BR12 | Phụ huynh chỉ xem: Parent đã liên kết chỉ được xem kế hoạch, không sửa. |
+| BR13 | Thông báo kết quả: Thông báo thành công, cảnh báo hoặc lỗi sau mỗi thao tác chính. |
 
 **Exception Handling:**
 
@@ -1070,45 +1114,147 @@ Cho phép học sinh xem xét, điều chỉnh, xác nhận và lưu kế hoạc
 
 ---
 
-# 5. Tiêu chí nghiệm thu
+# 5. Acceptance Criteria
 
-Tiêu chí nghiệm thu được xây dựng để xác định tính năng Kế hoạch học tập AI hoạt động đúng với các yêu cầu nghiệp vụ.
+Tiêu chí nghiệm thu được xây dựng để xác định tính năng Kế hoạch học tập AI hoạt động đúng với các yêu cầu nghiệp vụ
 
-| ID   | Cho trước (Given) | Khi (When) | Thì (Then) |
-| ---- | ----------------- | ---------- | ---------- |
-| AC01 | Học sinh đã đăng nhập | Học sinh truy cập Kế hoạch học tập AI | Hệ thống hiển thị quy trình thiết lập học tập. |
-| AC02 | Học sinh đang cấu hình thông tin học tập | Học sinh gửi thông tin hợp lệ | Hệ thống lưu hồ sơ học tập. |
-| AC03 | Học sinh chọn ngôn ngữ Output | Học sinh xác nhận lựa chọn | Hệ thống lưu tùy chọn ngôn ngữ. |
-| AC04 | Học sinh nhập mục tiêu học tập | Học sinh gửi mục tiêu | Hệ thống ghi nhận mục tiêu học tập. |
-| AC05 | Học sinh cấu hình ngày thi và lịch học | Học sinh gửi lịch học | Hệ thống kiểm tra và lưu lịch học. |
-| AC06 | Học sinh chọn phương thức học tập | Học sinh xác nhận các lựa chọn | Hệ thống lưu các phương thức học tập đã chọn. |
-| AC07 | Học sinh đánh giá mức độ hiểu biết | Học sinh chọn một mức độ | Hệ thống ghi nhận mức độ tương ứng. |
-| AC08 | Học sinh tải lên một tệp được hỗ trợ | Việc tải lên hoàn tất thành công | Hệ thống lưu tệp và cập nhật trạng thái của tệp. |
-| AC09 | Học sinh tải lên một tệp không được hỗ trợ | Hệ thống kiểm tra tệp | Hệ thống từ chối tệp và hiển thị lỗi. |
-| AC10 | Học sinh tải lên một tệp vượt quá dung lượng | Hệ thống kiểm tra tệp | Hệ thống từ chối tệp và hiển thị giới hạn dung lượng. |
-| AC11 | Học sinh tải lên một tệp bị hỏng | Hệ thống kiểm tra tính toàn vẹn | Hệ thống đánh dấu tệp là Không hợp lệ. |
-| AC12 | Học sinh tải lên một tài liệu hợp lệ | AI bắt đầu Processing | Hệ thống trích xuất nội dung đọc được. |
-| AC13 | Học sinh tải lên một tài liệu scan | AI Processing tài liệu | Hệ thống áp dụng OCR nếu được hỗ trợ. |
-| AC14 | AI trích xuất nội dung tài liệu | Quá trình phân tích hoàn tất | Hệ thống cung cấp nội dung có cấu trúc cho bước phân loại chủ đề. |
-| AC15 | Đã có nội dung được trích xuất | AI phân loại nội dung | Hệ thống tạo ra cấu trúc chủ đề có tổ chức. |
-| AC16 | Đã có các chủ đề được phân loại | AI tạo danh sách chủ đề | Hệ thống hiển thị các chủ đề được nhóm theo môn học và chương nếu có thể. |
-| AC17 | Học sinh xem xét danh sách chủ đề | Học sinh chỉnh sửa một chủ đề | Hệ thống cập nhật thông tin chủ đề tương ứng. |
-| AC18 | Học sinh chọn mức ưu tiên học tập | Học sinh xác nhận lựa chọn | Hệ thống lưu thông tin ưu tiên. |
-| AC19 | Danh sách chủ đề đã được xác nhận | AI tạo lịch học | Hệ thống tạo kế hoạch học tập cá nhân hóa dựa trên các dữ liệu đầu vào hiện có. |
-| AC20 | AI đã tạo một kế hoạch học tập | Học sinh xem xét kế hoạch | Hệ thống hiển thị lịch học và các chủ đề học tập được phân bổ. |
-| AC21 | Học sinh thay đổi một buổi học | Học sinh lưu điều chỉnh | Hệ thống kiểm tra và cập nhật kế hoạch. |
-| AC22 | Học sinh hài lòng với kế hoạch | Học sinh xác nhận kế hoạch | Hệ thống lưu kế hoạch học tập đã xác nhận. |
-| AC23 | Kế hoạch học tập đã được lưu | Học sinh truy cập khu vực quản lý học tập | Hệ thống hiển thị kế hoạch đã lưu. |
-| AC24 | Quá trình Processing của AI thất bại | Không thể hoàn tất Processing | Hệ thống thông báo cho người dùng và giữ lại dữ liệu đầu vào hiện có. |
-| AC25 | Thời gian học không đủ | AI không thể phân bổ tất cả các chủ đề | Hệ thống thông báo cho học sinh và chỉ ra các chủ đề chưa được phân bổ. |
+## A. Truy cập và hồ sơ học tập
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-01 | Khi người dùng chưa đăng nhập mà truy cập Kế hoạch học tập AI, hệ thống chuyển đến màn hình đăng nhập và đưa người dùng quay lại Kế hoạch học tập AI sau khi đăng nhập thành công. |
+| AC-02 | Học sinh đã đăng nhập khi truy cập Kế hoạch học tập AI sẽ thấy màn hình đầu tiên của quy trình thiết lập học tập. |
+| AC-03 | Hệ thống lưu hồ sơ học tập (cấp học, độ tuổi, nhu cầu học gấp, mục tiêu chung, quốc gia) và chuyển sang bước tiếp theo khi học sinh gửi đủ các trường bắt buộc. |
+| AC-04 | Hệ thống không lưu hồ sơ học tập, hiển thị lỗi tại từng trường sai và giữ lại dữ liệu đã nhập khi học sinh gửi thông tin thiếu hoặc sai trường bắt buộc. |
+ 
+## B. Ngôn ngữ đầu ra
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-05 | Học sinh có thể chọn English hoặc Tiếng Việt làm ngôn ngữ đầu ra và hệ thống lưu lựa chọn này cho mọi nội dung do AI tạo ra. |
+| AC-06 | Nếu học sinh chưa chọn ngôn ngữ đầu ra, hệ thống dùng ngôn ngữ giao diện làm mặc định và hiển thị ngôn ngữ đang áp dụng. |
+ 
+## C. Mục tiêu học tập
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-07 | Hệ thống lưu mục tiêu học tập khi học sinh gửi môn học cùng điểm mục tiêu nằm trong thang điểm hợp lệ (ví dụ 0 đến 10). |
+| AC-08 | Hệ thống không lưu mục tiêu học tập và hiển thị lỗi tại trường sai khi môn học bị thiếu hoặc điểm mục tiêu nằm ngoài thang điểm. |
+ 
+## D. Ngày thi và lịch học
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-09 | Hệ thống lưu ngày thi và hiển thị số ngày còn lại khi học sinh nhập ngày thi sau ngày hiện tại. |
+| AC-10 | Hệ thống từ chối ngày thi là hôm nay hoặc đã qua và yêu cầu học sinh chọn ngày hợp lệ. |
+| AC-11 | Hệ thống lưu lịch học và hiển thị quỹ thời gian khả dụng đến ngày thi khi học sinh gửi thời khóa biểu và khung giờ tự học hợp lệ (không chồng lấn, giờ bắt đầu trước giờ kết thúc). |
+| AC-12 | Hệ thống cảnh báo và yêu cầu học sinh nhập lại hoặc dùng giá trị mặc định (ví dụ 1 giờ/ngày) khi lịch học không còn khung giờ rảnh nào. |
+| AC-13 | **[Giả định]** Học sinh có thể chọn chế độ "không có ngày thi" và hệ thống tạo kế hoạch học đều theo tuần, không theo hạn. |
+ 
+## E. Phương thức học tập
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-14 | Học sinh có thể chọn một hoặc nhiều phương thức học (Tóm tắt, Flashcard, Quiz, Bài tập) và hệ thống lưu các phương thức đã chọn. |
+| AC-15 | Hệ thống chặn việc xác nhận và yêu cầu chọn ít nhất một phương thức học khi học sinh chưa chọn phương thức nào. |
+ 
+## F. Mức độ hiểu biết
+ 
+> Cần chốt với nhóm: học sinh tự chọn mức hay làm bài đánh giá; đánh giá theo chủ đề hay tổng thể.
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-16 | Hệ thống ghi nhận mức độ hiểu biết của học sinh cho từng chủ đề ở một trong 4 mức: Not Seen Yet, Struggling, Practicing hoặc Mastered. |
+| AC-17 | Nếu học sinh bỏ qua bước đánh giá, hệ thống gán mức Not Seen Yet cho các chủ đề chưa được đánh giá. |
+ 
+## G. Tải lên và kiểm tra tệp
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-18 | Khi học sinh tải lên thành công tệp thuộc định dạng hỗ trợ (Google Docs, PowerPoint, Word, ảnh), hệ thống lưu tệp, cập nhật trạng thái "Đã tải lên", trừ 1 lượt và hiển thị số lượt còn lại. |
+| AC-19 | Hệ thống từ chối tệp có định dạng không được hỗ trợ, hiển thị lỗi kèm danh sách định dạng hỗ trợ và không trừ lượt tải lên. |
+| AC-20 | Hệ thống từ chối tệp vượt dung lượng tối đa, hiển thị giới hạn **[X MB]** và không trừ lượt tải lên. |
+| AC-21 | Hệ thống từ chối tệp bị hỏng, rỗng hoặc có mật khẩu, nêu rõ lý do, cho chọn lại và không trừ lượt tải lên. |
+| AC-22 | Hệ thống chặn tải lên và hiển thị thời điểm đặt lại hạn mức khi học sinh đã dùng hết 5 lượt tải lên trong tháng. |
+| AC-23 | Hệ thống cảnh báo khi ảnh mờ hoặc chất lượng thấp và cho học sinh chọn "Chụp lại" hoặc "Vẫn tiếp tục". |
+ 
+## H. Trích xuất và phân tích tài liệu bằng AI
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-24 | Hệ thống trích xuất văn bản đọc được từ tệp đã qua kiểm tra và tải lên thành công. |
+| AC-25 | Hệ thống áp dụng OCR để trích xuất văn bản khi tài liệu là bản scan hoặc ảnh chụp. |
+| AC-26 | Khi nội dung trích xuất không đủ hoặc OCR không đọc được, hệ thống yêu cầu bổ sung tài liệu hoặc tải bản rõ hơn và không trừ thêm lượt tải lên. |
+| AC-27 | Sau khi phân tích hoàn tất, hệ thống cung cấp nội dung có cấu trúc (tiêu đề, chương, đoạn, bảng) cho bước phân loại chủ đề. |
+| AC-28 | AI sinh nội dung học tập (tóm tắt, flashcard, quiz) đúng loại phương thức đã chọn, đúng ngôn ngữ đầu ra và bám sát tài liệu gốc. |
+| AC-29 | Hệ thống hiển thị tiến trình khi AI xử lý mất thời gian, cho phép học sinh thoát và thông báo khi xử lý xong. |
 
+
+## I. Phân loại chủ đề và danh sách chủ đề
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-30 | AI phân loại nội dung đã trích xuất thành cấu trúc Chương → Chủ đề → Ý nhỏ, trong đó mỗi chủ đề có độ khó, thời lượng ước tính, mức thành thạo ban đầu và quan hệ tiên quyết (nếu có). |
+| AC-31 | Hệ thống hợp nhất các chủ đề trùng hoàn toàn và đánh dấu các chủ đề chồng chéo một phần để học sinh xem xét. |
+| AC-32 | Khi tài liệu không có cấu trúc chương, hệ thống tự nhóm chủ đề theo nội dung và đánh dấu các phân loại chưa chắc chắn. |
+| AC-33 | Hệ thống hiển thị danh sách chủ đề nhóm theo môn học và chương, kèm mô tả ngắn, thời lượng từng chủ đề và tổng thời lượng so với quỹ thời gian. |
+| AC-34 | Học sinh có thể sửa tên hoặc mô tả chủ đề và hệ thống cập nhật thông tin chủ đề tương ứng. |
+| AC-35 | Hệ thống báo lỗi tại ô nhập và giữ tên cũ khi học sinh đặt tên chủ đề trống hoặc trùng với chủ đề khác. |
+| AC-36 | Học sinh có thể thêm hoặc xóa chủ đề và hệ thống cập nhật ngay danh sách, tổng thời lượng và cảnh báo. |
+| AC-37 | Hệ thống cảnh báo và yêu cầu xác nhận khi học sinh xóa chủ đề là tiên quyết của chủ đề khác. |
+| AC-38 | Hệ thống chặn xác nhận và yêu cầu giữ ít nhất 1 chủ đề khi học sinh đã xóa hết chủ đề. |
+| AC-39 | Học sinh có thể xác nhận danh sách chủ đề và hệ thống lưu danh sách đã xác nhận để chuyển sang bước tiếp theo. |
+
+
+## K. Tạo lịch học bằng AI
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-44 | AI chỉ xếp các buổi học vào khung giờ rảnh, không trùng thời khóa biểu và kết thúc trước ngày thi. |
+| AC-45 | AI xếp các buổi của chủ đề tiên quyết trước các buổi của chủ đề phụ thuộc. |
+| AC-46 | Với hai chủ đề cùng độ khó, AI dành nhiều thời gian hơn cho chủ đề ưu tiên Cao so với chủ đề ưu tiên Thấp. |
+| AC-47 | Mỗi buổi học trong lịch dùng phương thức học đã chọn và có mục tiêu học tập dự kiến. |
+| AC-48 | Không buổi học hay ngày nào vượt giới hạn thời lượng đã cấu hình, và mỗi chủ đề có ít nhất một buổi hoặc được nêu rõ là chưa xếp lịch. |
+| AC-49 | Khi thời gian học không đủ, hệ thống thông báo, rút gọn theo mức ưu tiên, chỉ rõ các chủ đề chưa được phân bổ và gợi ý tăng giờ học. |
+| AC-50 | Khi ngày thi còn ít hơn **[N ngày]**, hệ thống tạo lịch ôn nước rút (chủ đề ưu tiên Cao và chủ đề yếu) và thông báo hạn chế cho học sinh. |
+| AC-51 | Khi không thể xếp lịch khả thi cho các chủ đề ưu tiên Cao, hệ thống không tạo lịch, giải thích nguyên nhân và yêu cầu điều chỉnh lịch rảnh hoặc mục tiêu. |
+| AC-52 | Khi quan hệ tiên quyết không nhất quán (ví dụ vòng lặp), hệ thống giữ thứ tự theo tài liệu gốc và đánh dấu để xem xét, không ép một trình tự sai. |
+| AC-53 | Khi AI xử lý thất bại, hệ thống thông báo cho học sinh, giữ lại toàn bộ dữ liệu đầu vào, cho thử lại và không trừ lượt. |
+| AC-54 | Hệ thống kiểm tra lịch sau khi AI tạo và tự điều chỉnh hoặc tạo lại nếu vi phạm quy tắc (đè lịch, vượt giới hạn, thiếu chủ đề), không bao giờ hiển thị lịch sai cho học sinh. |
+
+
+## L. Xem xét, chỉnh sửa và lưu kế hoạch
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-55 | Hệ thống hiển thị kế hoạch bản nháp gồm lịch theo ngày hoặc tuần, chủ đề được phân bổ, thông tin buổi học (ngày, giờ, thời lượng, phương thức, mục tiêu), tổng thời lượng, cảnh báo và giải thích của AI. |
+| AC-56 | Học sinh có thể đổi buổi học sang khung giờ rảnh hợp lệ và hệ thống kiểm tra, cập nhật kế hoạch cùng tổng thời lượng và cảnh báo. |
+| AC-57 | Hệ thống từ chối thay đổi, chỉ rõ buổi vi phạm và giữ giá trị cũ khi học sinh đổi buổi học thành trùng lịch bận hoặc sau ngày thi. |
+| AC-58 | Hệ thống cảnh báo và cho học sinh tiếp tục hoặc hoàn tác khi thay đổi gây vi phạm mềm (vượt giới hạn ngày, đảo thứ tự tiên quyết, thiếu chủ đề). |
+| AC-59 | Học sinh có thể hoàn tác hoặc đặt lại kế hoạch về bản trước đó hoặc bản gốc của AI. |
+| AC-60 | Khi học sinh xác nhận kế hoạch không có lỗi chặn, hệ thống lưu kế hoạch với mã duy nhất, trạng thái "Đã xác nhận", liên kết với tài khoản và hiển thị thông báo lưu thành công (hoàn thành main task). |
+| AC-61 | Hệ thống chặn việc xác nhận và yêu cầu tạo lại khi kế hoạch rỗng. |
+| AC-62 | Khi học sinh bấm xác nhận nhiều lần hoặc trên hai thiết bị, hệ thống chỉ tạo một kế hoạch và không tạo bản sao. |
+| AC-63 | Khi xảy ra lỗi hệ thống lúc lưu, hệ thống giữ kế hoạch trên màn hình và cho thử lại mà không tạo bản sao. |
+| AC-64 | Khi học sinh thoát trước khi xác nhận, kế hoạch giữ trạng thái "Nháp" và hệ thống hỏi tiếp tục hay đặt lại khi học sinh quay lại. |
+| AC-65 | Hệ thống không cho sửa các buổi học đã qua hoặc đã hoàn thành. |
+| AC-66 | Khi học sinh đổi ngày thi, mức ưu tiên hoặc giờ rảnh sau khi đã có kế hoạch, hệ thống đánh dấu kế hoạch cũ là lỗi thời, hỏi có tạo lại không và giữ tiến độ đã hoàn thành. |
+
+## M. Quản lý học tập và tích hợp
+ 
+| ID | Tiêu chí nghiệm thu |
+|---|---|
+| AC-67 | Học sinh truy cập **[tên màn hình quản lý học tập]** sẽ thấy kế hoạch đã lưu cùng mã kế hoạch và trạng thái. |
+| AC-68 | Progress Dashboard hiển thị tiến độ ban đầu theo kế hoạch đã lưu (0% hoàn thành, mức thành thạo ban đầu của từng chủ đề). |
+| AC-69 | Chỉ chủ sở hữu (và phụ huynh đã liên kết, nếu được cho phép) xem được tài liệu và kế hoạch của học sinh. |
+ 
 ---
 
-# 6. Giao diện tham khảo
+# 6. UI/UX Reference
 
 ## 6.1. Thiết lập thông tin học tập
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 - Giao diện thu thập thông tin học tập.
 - Cho phép chọn cấp học và khối lớp.
@@ -1128,7 +1274,7 @@ Tiêu chí nghiệm thu được xây dựng để xác định tính năng Kế
 
 ## 6.2. Lựa chọn phương thức học tập
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị câu hỏi "Bạn thích học theo cách nào?" và các lựa chọn phương thức học tập.
 
@@ -1143,7 +1289,7 @@ Hiển thị câu hỏi "Bạn thích học theo cách nào?" và các lựa ch�
 
 ## 6.3. Đánh giá mức độ hiểu biết
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị câu hỏi về mức độ hiểu biết của học sinh đối với tài liệu hoặc môn học.
 
@@ -1156,7 +1302,7 @@ Hiển thị câu hỏi về mức độ hiểu biết của học sinh đối v
 
 ## 6.4. Tải lên tài liệu học tập
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 - Khu vực tải tài liệu.
 - Hiển thị định dạng được hỗ trợ.
@@ -1175,7 +1321,7 @@ Hiển thị câu hỏi về mức độ hiểu biết của học sinh đối v
 
 ## 6.5. Processing phân tích tài liệu
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị trạng thái AI đang đọc, trích xuất và phân tích tài liệu.
 
@@ -1200,7 +1346,7 @@ Các trạng thái tham khảo:
 
 ## 6.6. Phân loại và tổ chức chủ đề
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị danh sách kiến thức được AI phân loại theo môn học và chương.
 
@@ -1215,7 +1361,7 @@ Hiển thị danh sách kiến thức được AI phân loại theo môn học v
 
 ## 6.7. Xem xét và chỉnh sửa danh sách chủ đề
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Cho phép học sinh xem xét và chỉnh sửa danh sách chủ đề do AI tạo ra.
 
@@ -1231,7 +1377,7 @@ Cho phép học sinh xem xét và chỉnh sửa danh sách chủ đề do AI t�
 
 ## 6.8. Lựa chọn trọng tâm học tập
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị câu hỏi "Chúng ta nên tập trung nhiều nhất vào đâu?" để học sinh lựa chọn các chủ đề cần ưu tiên.
 
@@ -1245,7 +1391,7 @@ Hiển thị câu hỏi "Chúng ta nên tập trung nhiều nhất vào đâu?" 
 
 ## 6.9. Tạo kế hoạch học tập bằng AI
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị trạng thái AI đang xây dựng kế hoạch học tập dựa trên thông tin đã xác nhận.
 
@@ -1258,7 +1404,7 @@ Hiển thị trạng thái AI đang xây dựng kế hoạch học tập dựa t
 
 ## 6.10. Xem xét và lưu kế hoạch học tập
 
-**Discribe màn hình dự kiến:**
+**Mô tả màn hình dự kiến:**
 
 Hiển thị kế hoạch học tập dưới dạng lịch theo ngày hoặc tuần. Người dùng có thể xem, điều chỉnh và xác nhận kế hoạch.
 
@@ -1275,7 +1421,7 @@ Hiển thị kế hoạch học tập dưới dạng lịch theo ngày hoặc tu
 
 ---
 
-# 7. Mức độ ưu tiên
+# 7. Priority 
 
 ## 7.1. Mức độ ưu tiên theo nhóm tính năng
 
@@ -1298,92 +1444,17 @@ Hiển thị kế hoạch học tập dưới dạng lịch theo ngày hoặc tu
 | ASP-05 | Lựa chọn phương thức học tập | Trung bình |
 | ASP-06 | Đánh giá mức độ hiểu biết | Cao |
 | ASP-07 | Tải lên tài liệu học tập | Cao |
-| F08 | Kiểm tra tệp | Cao |
-| F09 | Phân tích tài liệu bằng AI | Cao |
-| F10 | Phân loại và tổ chức chủ đề | Cao |
-| F11 | Tạo và xem xét danh sách chủ đề | Cao |
-| F12 | Lựa chọn trọng tâm học tập | Trung bình |
-| F13 | Tạo lịch học bằng AI | Cao |
-| F14 | Xem xét và lưu kế hoạch học tập | Cao |
+| ASP-08 | Kiểm tra tệp | Cao |
+| ASP-09 | Phân tích tài liệu bằng AI | Cao |
+| ASP-10 | Phân loại và tổ chức chủ đề | Cao |
+| ASP-11 | Tạo và xem xét danh sách chủ đề | Cao |
+| ASP-12 | Lựa chọn trọng tâm học tập | Trung bình |
+| ASP-13 | Tạo lịch học bằng AI | Cao |
+| ASP-14 | Xem xét và lưu kế hoạch học tập | Cao |
 
 ---
 
-# 8. Các nghiệp vụ cần xem xét bổ sung
-
-Những nội dung sau không nhất thiết phải đưa vào phiên bản MVP, nhưng nên được xem xét trong quá trình phát triển Kế hoạch học tập AI.
-
-## 8.1. Tạo lại kế hoạch học tập
-
-Cho phép học sinh yêu cầu AI tạo lại kế hoạch khi:
-
-- Thay đổi mục tiêu học tập.
-- Thay đổi ngày thi.
-- Thay đổi thời gian có thể học.
-- Bổ sung hoặc xóa tài liệu.
-- Thay đổi danh sách chủ đề.
-- Thay đổi mức độ ưu tiên.
-
-## 8.2. Điều chỉnh kế hoạch học tập
-
-Cho phép kế hoạch được điều chỉnh khi học sinh không hoàn thành đúng lịch.
-
-Ví dụ:
-
-- Học sinh bỏ lỡ một buổi học.
-- Học sinh cần thêm thời gian cho một chủ đề.
-- Học sinh hoàn thành chủ đề sớm hơn dự kiến.
-- Học sinh có lịch học mới.
-
-AI có thể đề xuất cập nhật lịch học còn lại dựa trên trạng thái mới.
-
-## 8.3. Quản lý phiên bản kế hoạch học tập
-
-Hệ thống có thể lưu các phiên bản kế hoạch khi người dùng yêu cầu AI tạo lại hoặc chỉnh sửa kế hoạch.
-
-Các thông tin cần lưu:
-
-- Mã kế hoạch.
-- Số phiên bản.
-- Ngày tạo.
-- Ngày cập nhật.
-- Kế hoạch trước đó.
-- Trạng thái kế hoạch hiện tại.
-
-## 8.4. Tích hợp tiến độ kế hoạch học tập
-
-Kế hoạch đã lưu có thể liên kết với hệ thống theo dõi tiến độ học tập.
-
-Ví dụ:
-
-- Chưa bắt đầu.
-- Đang thực hiện.
-- Đã hoàn thành.
-- Quá hạn.
-
-Dữ liệu tiến độ có thể được sử dụng để đề xuất điều chỉnh kế hoạch trong tương lai.
-
----
-
-# 9. Các giả định và vấn đề cần xác nhận
-
-Các quy tắc dưới đây cần được Chủ sản phẩm (Product Owner) hoặc nhóm xác nhận trước khi xem là yêu cầu chính thức.
-
-| ID | Câu hỏi | Tại sao quan trọng |
-| --- | --- | --- |
-| Q01 | Người dùng có bắt buộc tải tài liệu lên không? | Xác định AI có thể tạo kế hoạch chỉ từ thông tin nhập tay hay không. |
-| Q02 | Một kế hoạch có thể chứa nhiều môn học không? | Ảnh hưởng đến cấu trúc dữ liệu và cách phân bổ thời gian. |
-| Q03 | Người dùng có thể thiết lập nhiều ngày thi cho nhiều môn không? | Ảnh hưởng đến việc ưu tiên môn học và hạn chót. |
-| Q04 | Có giới hạn số lượng tệp, dung lượng và số trang không? | Xác định quy tắc tải lên và Processing tài liệu. |
-| Q05 | AI có tự đánh giá mức độ hiểu biết qua bài kiểm tra (Quiz) không? | Phân biệt tự đánh giá và đánh giá dựa trên kết quả thực tế. |
-| Q06 | Người dùng có bắt buộc chọn phương thức học tập không? | Xác định điều kiện hoàn thành thiết lập. |
-| Q07 | AI có tự đề xuất mức độ ưu tiên học tập hay chỉ ghi nhận lựa chọn của học sinh? | Xác định trách nhiệm của AI và người dùng. |
-| Q08 | Người dùng có thể chỉnh sửa lịch học sau khi xác nhận không? | Xác định nghiệp vụ cập nhật kế hoạch. |
-| Q09 | Khi lịch học không đủ để hoàn thành tất cả chủ đề, AI Processing như thế nào? | Xác định quy tắc ưu tiên và thông báo. |
-| Q10 | Kế hoạch học tập sau khi lưu có tự động tạo các Nhiệm vụ chính (Main Tasks) không? | Xác định mối liên kết với module Quản lý nhiệm vụ. |
-
----
-
-# 10. Kết quả cuối cùng
+# 8. Final Result
 
 Sau khi hoàn thành Kế hoạch học tập AI, học sinh nhận được:
 
@@ -1396,7 +1467,4 @@ Sau khi hoàn thành Kế hoạch học tập AI, học sinh nhận được:
 7. Một kế hoạch học tập cá nhân hóa theo ngày hoặc tuần.
 8. Các hoạt động học tập và thời lượng dự kiến cho từng buổi.
 9. Một kế hoạch học tập đã được xác nhận và lưu vào tài khoản người dùng.
-
-**Giá trị nghiệp vụ cuối cùng:**
-
-Kế hoạch học tập AI giúp chuyển đổi tài liệu học tập rời rạc và thông tin cá nhân của học sinh thành một kế hoạch học tập có cấu trúc, có thời gian, có thứ tự ưu tiên và phù hợp với mục tiêu của từng người học.
+---
