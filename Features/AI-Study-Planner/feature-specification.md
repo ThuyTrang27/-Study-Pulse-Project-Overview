@@ -155,20 +155,22 @@ flowchart TD
     của tài liệu]
 
     H --> I{Tài liệu có
-    sử dụng được không?}
+    sử dụng được
+    không?}
     I -->|Không| J[Thông báo người
     dùng và yêu
     cầu tài liệu
     khác]
     J --> C
 
-    I -->|Có| K[Phân loại và
+    I -->|Có| K[ Phân loại và
     tổ chức chủ
-    đề]
+    đề ]
     K --> L[Tạo danh
     sách chủ đề]
     L --> M[Xem xét và
-    chỉnh sửa chủ đề]
+    chỉnh sửa
+    chủ đề]
     M --> N[Chọn mức ưu
     tiên học tập]
     N --> O[Xác nhận danh
@@ -179,14 +181,16 @@ flowchart TD
     P --> Q[Xem xét kế
     hoạch học tập]
     Q --> R{Hài lòng
-    với kế hoạch?}
+    với kế
+    hoạch?}
 
     R -->|Không| S[Điều chỉnh kế
     hoạch học tập]
     S --> Q
 
     R -->|Có| T[Xác nhận và
-    lưu kế hoạch học tập]
+    lưu kế hoạch
+    học tập]
     T --> U([Kết thúc])
 ```
 
