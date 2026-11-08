@@ -119,7 +119,9 @@ Hệ thống tiếp nhận dữ liệu, Xử lý tài liệu bằng AI, tổ ch�
 
 ```mermaid
 flowchart TD
-    A([ Bắt đầu Kế hoạch học tập AI ]) --> B[ Thiết lập thông tin học tập ]
+    A([ Bắt đầu Kế
+    hoạch học tập AI ]) --> B[ Thiết lập
+    thông tin học tập ]
 
     B --> B1[ Chọn ngôn ngữ Output ]
     B1 --> B2[ Thiết lập mục tiêu học tập ]
