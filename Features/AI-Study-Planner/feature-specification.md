@@ -120,43 +120,73 @@ Hệ thống tiếp nhận dữ liệu, Xử lý tài liệu bằng AI, tổ ch�
 ```mermaid
 flowchart TD
     A([ Bắt đầu Kế
-    hoạch học tập AI ]) --> B[ Thiết lập
-    thông tin học tập ]
+    hoạch học
+    tập AI ]) --> B[ Thiết lập
+    thông tin
+    học tập ]
 
-    B --> B1[ Chọn ngôn ngữ Output ]
-    B1 --> B2[ Thiết lập mục tiêu học tập ]
-    B2 --> B3[ Thiết lập ngày thi và lịch học ]
-    B3 --> B4[ Chọn phương thức học tập ]
-    B4 --> B5[ Đánh giá mức độ hiểu biết hiện tại ]
+    B --> B1[ Chọn ngôn
+    ngữ Output ]
+    B1 --> B2[ Thiết lập mục
+    tiêu học tập ]
+    B2 --> B3[ Thiết lập ngày
+    thi và lịch học ]
+    B3 --> B4[ Chọn phương
+    thức học tập ]
+    B4 --> B5[ Đánh giá mức độ
+    hiểu biết hiện tại ]
 
-    B5 --> C[ Tải lên tài liệu học tập ]
-    C --> D{ Kiểm tra tệp }
+    B5 --> C[ Tải lên
+    tài liệu học tập ]
+    C --> D{ Kiểm tra
+    tệp }
 
-    D -->|Không hợp lệ| E[ Thông báo lỗi cho người dùng ]
+    D -->|Không hợp lệ| E[ Thông báo lỗi
+    cho người dùng ]
     E --> C
 
-    D -->|Hợp lệ| F[ AI phân tích tài liệu ]
-    F --> G[Trích xuất văn bản và cấu trúc tài liệu]
-    G --> H[Đánh giá khả năng sử dụng của tài liệu]
+    D -->|Hợp lệ| F[ AI phân
+    tích tài liệu ]
+    F --> G[Trích xuất văn
+     bản và cấu
+    trúc tài liệu]
+    G --> H[Đánh giá khả
+    năng sử dụng
+    của tài liệu]
 
-    H --> I{Tài liệu có sử dụng được không?}
-    I -->|Không| J[Thông báo người dùng và yêu cầu tài liệu khác]
+    H --> I{Tài liệu có
+    sử dụng được không?}
+    I -->|Không| J[Thông báo người
+    dùng và yêu
+    cầu tài liệu
+    khác]
     J --> C
 
-    I -->|Có| K[Phân loại và tổ chức chủ đề]
-    K --> L[Tạo danh sách chủ đề]
-    L --> M[Xem xét và chỉnh sửa chủ đề]
-    M --> N[Chọn mức ưu tiên học tập]
-    N --> O[Xác nhận danh sách chủ đề]
+    I -->|Có| K[Phân loại và
+    tổ chức chủ
+    đề]
+    K --> L[Tạo danh
+    sách chủ đề]
+    L --> M[Xem xét và
+    chỉnh sửa chủ đề]
+    M --> N[Chọn mức ưu
+    tiên học tập]
+    N --> O[Xác nhận danh
+    sách chủ đề]
 
-    O --> P[AI tạo lịch học]
-    P --> Q[Xem xét kế hoạch học tập]
-    Q --> R{Hài lòng với kế hoạch?}
+    O --> P[AI tạo
+    lịch học]
+    P --> Q[Xem xét kế
+    hoạch học tập]
+    Q --> R{Hài lòng
+    với kế hoạch?}
 
-    R -->|Không| S[Điều chỉnh kế hoạch học tập]
+    R -->|Không| S[Điều chỉnh kế
+    hoạch học tập]
     S --> Q
 
-    R -->|Có| T[Xác nhận và lưu kế hoạch học tập]
+    R -->|Có| T[Xác nhận và
+    lưu kế hoạch học tập]
     T --> U([Kết thúc])
 ```
 
