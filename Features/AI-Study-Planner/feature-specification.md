@@ -59,7 +59,7 @@ Kế hoạch học tập AI được phân rã thành 5 nhóm nghiệp vụ chí
 | ASP-07 | Tải lên tài liệu học tập | Cho phép người dùng tải một hoặc nhiều tài liệu học tập lên hệ thống. |
 | ASP-08 | Kiểm tra tệp | Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đọc của tài liệu. |
 
-## 2.3. Processing tài liệu bằng AI
+## 2.3. Xử lý tài liệu bằng AI
 
 | ID | Chức năng nhỏ | Discribe nghiệp vụ |
 | --- | --- | --- |
