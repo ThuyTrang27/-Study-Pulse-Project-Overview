@@ -20,7 +20,7 @@ Hệ thống ứng dụng AI để phân tích tài liệu học tập, trích x
 
 ### 1.3. Đối tượng sử dụng
 
-| Đối tượng | Discribe |
+| Đối tượng | Mô tả |
 | --------- | ----- |
 | Học sinh  | Học sinh THCS và THPT sử dụng hệ thống để thiết lập và quản lý kế hoạch học tập cá nhân. |
 | Phụ huynh | Phụ huynh có thể theo dõi kế hoạch và tiến độ học tập nếu hệ thống hỗ trợ vai trò này. |
