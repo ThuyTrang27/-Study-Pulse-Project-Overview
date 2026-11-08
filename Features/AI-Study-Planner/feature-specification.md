@@ -181,8 +181,9 @@ Cho phép học sinh cung cấp các thông tin cá nhân và thông tin học t
 
 **Input:**
 
-- Cấp học, trình độ học vấn (THCS/THPT).
+- Trình độ học vấn (THCS/THPT).
 - Khối lớp.
+- Độ tuổi
 - Thông tin môn học.
 - Ngôn ngữ mẹ đẻ
 - Khó khăn khi học
@@ -207,7 +208,7 @@ Cho phép học sinh cung cấp các thông tin cá nhân và thông tin học t
 | ID   | Business rule |
 | ---- | ----------------- |
 | BR01 | Xác thực người dùng: Chỉ người dùng đã đăng nhập mới được thiết lập thông tin học tập. |
-| BR02 | Cấp học: Cấp học phải thuộc phạm vi hệ thống hỗ trợ. |
+| BR02 | Trình độ học vấn: Cấp học phải thuộc phạm vi hệ thống hỗ trợ. |
 | BR03 | Kiểm tra khối lớp: Khối lớp phải phù hợp với cấp học. |
 | BR04 | Liên kết hồ sơ: Thông tin phải được liên kết với đúng tài khoản người dùng. |
 | BR05 | Cập nhật hồ sơ: Người dùng có thể cập nhật thông tin học tập khi cần. |
@@ -215,14 +216,14 @@ Cho phép học sinh cung cấp các thông tin cá nhân và thông tin học t
 **Exception Handling:**
 
 - Thiếu thông tin bắt buộc: Hệ thống yêu cầu người dùng cung cấp thông tin còn thiếu.
-- Cấp học không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
+- Trình độ học vấn không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
 - Khối lớp không hợp lệ: Hệ thống yêu cầu người dùng chọn khối lớp hợp lệ.
 - Lỗi truy xuất hồ sơ: Hệ thống hiển thị lỗi và cho phép thử lại.
 - Lỗi lưu dữ liệu: Hệ thống giữ lại thông tin đã nhập nếu có thể và cho phép thử lại.
 
 ---
 
-## ASP-02. Lựa chọn ngôn ngữ Output
+## ASP-02. Lựa chọn ngôn ngữ đầu ra
 
 **Discribe:**
 
@@ -230,12 +231,13 @@ Cho phép học sinh lựa chọn ngôn ngữ mà AI sẽ sử dụng để tạ
 
 **Input:**
 
-- Ngôn ngữ Output được chọn.
-- Mã người dùng.
+- Ngôn ngữ đầu ra do người dùng chọn
+- Tài liệu đã upload, môn học, loại bài tập cần tạo
+- Ngôn ngữ giao diện app hoặc quốc gia đã chọn lúc thu thập thông tin học tập, dùng để gợi ý giá trị mặc định
 
 **Processing:**
 
-1. Hệ thống hiển thị các ngôn ngữ Output được hỗ trợ.
+1. Hệ thống hiển thị các ngôn ngữ đầu ra được hỗ trợ.
 2. Học sinh chọn ngôn ngữ mong muốn.
 3. Hệ thống kiểm tra tính hợp lệ của ngôn ngữ đã chọn.
 4. Hệ thống lưu lựa chọn ngôn ngữ.
@@ -250,16 +252,16 @@ Cho phép học sinh lựa chọn ngôn ngữ mà AI sẽ sử dụng để tạ
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Chọn ngôn ngữ: Người dùng phải chọn một ngôn ngữ trong danh sách hệ thống hỗ trợ nếu trường này được cấu hình bắt buộc. |
+| BR01 | Chọn ngôn ngữ: Người dùng phải chọn một ngôn ngữ trong danh sách hệ thống hỗ trợ. |
 | BR02 | Ngôn ngữ được hỗ trợ: Chỉ cho phép sử dụng ngôn ngữ được hệ thống hỗ trợ. |
 | BR03 | Nhất quán ngôn ngữ: AI phải sử dụng ngôn ngữ đã chọn khi tạo nội dung. |
-| BR04 | Cập nhật ngôn ngữ: Người dùng có thể thay đổi ngôn ngữ Output. |
+| BR04 | Cập nhật ngôn ngữ: Người dùng có thể thay đổi ngôn ngữ đầu ra. |
 | BR05 | Lưu trữ ngôn ngữ: Lựa chọn phải được lưu và sử dụng trong các bước tiếp theo. |
 
 **Exception Handling:**
 
 - Ngôn ngữ không được hỗ trợ: Hệ thống từ chối lựa chọn.
-- Chưa chọn ngôn ngữ: Hệ thống yêu cầu người dùng chọn ngôn ngữ nếu bắt buộc.
+- Chưa chọn ngôn ngữ: Hệ thống yêu cầu người dùng chọn ngôn ngữ hoặc thiết lập ngôn ngữ mặc định từ chức năng thu thập thông tin.
 - Lỗi lưu dữ liệu: Hệ thống thông báo cho người dùng và cho phép thử lại.
 
 ---
@@ -274,8 +276,12 @@ Cho phép học sinh thiết lập mục tiêu học tập để AI hiểu đư�
 
 - Mục tiêu học tập.
 - Điểm số mục tiêu.
+- Mô tả mục tiêu.
 - Môn học.
-- Discribe mục tiêu.
+- Ngày thi.
+- Thời khoá biểu hiện tại.
+- Thời gian tự học mỗi ngày.
+- Dữ liệu từ chức năng thu thập thông tin học tập.
 
 **Processing:**
 
@@ -288,27 +294,32 @@ Cho phép học sinh thiết lập mục tiêu học tập để AI hiểu đư�
 
 **Output:**
 
-- Mục tiêu học tập.
-- Điểm số mục tiêu.
-- Trạng thái mục tiêu học tập.
+- Bộ mục tiêu học tập được lưu.
+- Số ngày còn lại và tổng số giờ học khả dụng
+- Mục tiêu được chuyển cho AI Study Planner để phân bổ chủ đề theo thời gian
+- Trạng thái mục tiêu học tập (xác nhận lưu hoặc cảnh báo).
 
 **Business rule:**
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Chọn mục tiêu: Người dùng phải xác định mục tiêu học tập theo hình thức mà hệ thống hỗ trợ. |
-| BR02 | Nhiều mục tiêu: Hệ thống cho phép lựa chọn nhiều mục tiêu nếu nghiệp vụ cho phép. |
+| BR01 | Người dùng phải chọn ít nhất 1 môn học trước khi thiết lập mục tiêu |
+| BR02 | Ngày thi phải lớn hơn ngày hiện tại |
 | BR03 | Khoảng điểm mục tiêu: Điểm số mục tiêu phải nằm trong thang điểm được hệ thống cấu hình. |
 | BR04 | Liên kết mục tiêu: Mục tiêu phải được liên kết với môn học hoặc kế hoạch tương ứng. |
 | BR05 | Cập nhật mục tiêu: Người dùng có thể cập nhật mục tiêu trước khi xác nhận kế hoạch học tập. |
 | BR06 | Tích hợp mục tiêu vào AI: AI phải sử dụng mục tiêu làm dữ liệu tham khảo khi tạo kế hoạch. |
+| BR07 | Hệ thống tính số ngày còn lại từ ngày hiện tại đến ngày thi và dùng làm căn cứ phân bổ lộ trình. |
 
 **Exception Handling:**
 
-- Thiếu mục tiêu: Hệ thống yêu cầu người dùng cung cấp mục tiêu nếu bắt buộc.
+- Thiếu mục tiêu: Hệ thống yêu cầu người dùng cung cấp mục tiêu.
+- Ngày thi là hôm nay hoặc đã qua: Báo lỗi, không cho phép chọn ngày quá hạn hôm nay, yêu cầu chọn lại.
 - Điểm số mục tiêu không hợp lệ: Hệ thống hiển thị thông báo kiểm tra.
 - Mục tiêu mâu thuẫn: Hệ thống yêu cầu làm rõ nếu các mục tiêu không thể đồng thời đạt được.
+- Thời khóa biểu kín lịch, không còn giờ trống: Cảnh báo và đề nghị nhập lại thời gian rảnh
 - Lỗi lưu dữ liệu: Hệ thống thông báo cho người dùng và cho phép thử lại.
+- Người dùng chưa nhập thời khóa biểu: Dùng giá trị mặc định hoặc cho bỏ qua
 
 ---
 
@@ -322,15 +333,17 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 
 - Ngày thi.
 - Các ngày có thể học.
+- Lịch học trên trường
 - Thời gian có thể học.
 - Thời gian học ưa thích.
 - Thời lượng mỗi buổi học.
 - Múi giờ.
+- Môn học và điểm mục tiêu từ tính năng thiết lập mục tiêu
 
 **Processing:**
 
 1. Hệ thống hiển thị phần cấu hình ngày thi và lịch học.
-2. Học sinh chọn ngày thi.
+2. Học sinh chọn ngày thi, tải ảnh lịch học cá nhân để AI phân tích lịch học.
 3. Học sinh cấu hình các ngày có thể học.
 4. Hệ thống kiểm tra tính hợp lệ của lịch học.
 5. Hệ thống tính toán khoảng thời gian ôn tập khả dụng.
@@ -338,21 +351,24 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 
 **Output:**
 
-- Ngày thi.
+- Lịch học được lưu: ngày thi và các khung giờ tự học khả dụng
+- Số ngày còn lại và tổng số giờ học khả dụng
+- Quỹ thời gian được chuyển cho AI để phân bổ chủ đề theo ngày/tuần
 - Các ngày có thể học.
 - Thời gian có thể học.
-- Tổng thời gian ôn tập khả dụng.
+- Xác nhận lưu hoặc cảnh báo
 
 **Business rule:**
 
 | ID   | Business rule |
 | ---- | ----------------- |
-| BR01 | Kiểm tra ngày thi: Ngày thi phải phù hợp với quy định thời gian của hệ thống. |
+| BR01 | Kiểm tra ngày thi: Ngày thi phải phù hợp với quy định thời gian của hệ thống, ngày thi phải lớn hơn ngày hiện tại. |
 | BR02 | Kiểm tra thời gian: Thời gian bắt đầu phải trước thời gian kết thúc. |
-| BR03 | Nhất quán lịch học: Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
-| BR04 | Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
+| BR03 | Lịch học không được chứa các khoảng thời gian mâu thuẫn nếu hệ thống không hỗ trợ lịch chồng lấn. |
+| BR04 | Thời khóa biểu trên trường được dùng để tránh xếp lịch tự học trùng giờ học. |
 | BR05 | Cập nhật lịch học: Người dùng có thể cập nhật lịch học và ngày thi. |
 | BR06 | Tích hợp lịch học vào AI: AI phải sử dụng thời gian khả dụng khi phân bổ nội dung học tập. |
+| BR07 | Người dùng phải chọn hoặc nhập ngày thi nếu bật tùy chọn “lộ trình ôn thi. |
 
 **Exception Handling:**
 
@@ -368,14 +384,14 @@ Cho phép học sinh thiết lập ngày thi và thời gian có thể dành cho
 
 **Discribe:**
 
-Cho phép học sinh lựa chọn các phương thức học tập yêu thích để AI có thể đề xuất và cá nhân hóa hình thức nội dung học tập phù hợp.
+Cho phép học sinh lựa chọn các phương thức học tập yêu thích để AI có thể cá nhân hóa hình thức nội dung học tập phù hợp.
 
 **Input:**
 
 - Phương thức học tập:
   - Học qua đọc.
   - Học qua nghe (podcast).
-  - Học qua xem.
+  - Học qua xem video.
   - Học qua thực hành.
 
 **Processing:**
@@ -389,8 +405,10 @@ Cho phép học sinh lựa chọn các phương thức học tập yêu thích �
 
 **Output:**
 
-- Các phương thức học tập đã chọn.
+- Tùy chọn phương thức học được lưu vào cấu hình lộ trình
 - Trạng thái phương thức học tập.
+- Mỗi bài học trong lộ trình ghi rõ hoạt động theo phương thức đã chọn.
+- AI sinh đúng loại nội dung đã chọn cho từng chủ đề.
 
 **Business rule:**
 
@@ -399,15 +417,18 @@ Cho phép học sinh lựa chọn các phương thức học tập yêu thích �
 | BR01 | Hiển thị phương thức: Hệ thống hiển thị các phương thức học tập được hỗ trợ. |
 | BR02 | Chọn nhiều phương thức: Người dùng có thể chọn nhiều phương thức học tập. |
 | BR03 | Kiểm tra lựa chọn: Lựa chọn phải thuộc danh sách phương thức được hệ thống hỗ trợ. |
-| BR04 | Lưu lựa chọn: Hệ thống phải lưu các phương thức học đã chọn. |
-| BR05 | Cập nhật lựa chọn: Người dùng có thể thay đổi lựa chọn. |
-| BR06 | Cá nhân hóa bằng AI: AI sử dụng sở thích học tập để đề xuất hình thức nội dung phù hợp. |
+| BR04 | Người dùng phải chọn ít nhất 1 phương thức học trước khi tạo lộ trình. |
+| BR05 | Lưu lựa chọn: Hệ thống phải lưu các phương thức học đã chọn. |
+| BR06 | Cập nhật lựa chọn: Người dùng có thể thay đổi lựa chọn. |
+| BR07 | Cá nhân hóa bằng AI: AI sử dụng sở thích học tập để đề xuất hình thức nội dung phù hợp. |
+| BR08 | Nội dung AI sinh ra phải đúng loại phương thức đã chọn và dựa trên tài liệu đã upload. |
 
 **Exception Handling:**
 
-- Chưa chọn phương thức nào: Hệ thống yêu cầu chọn nếu bắt buộc.
+- Chưa chọn phương thức nào: Hệ thống yêu cầu chọn.
 - Phương thức không được hỗ trợ: Hệ thống từ chối lựa chọn.
 - Lỗi lưu dữ liệu: Hệ thống thông báo cho người dùng và cho phép thử lại.
+- Tài liệu quá ngắn, không đủ nội dung để sinh quiz: Cảnh báo hoặc gợi ý bổ sung tài liệu.
 
 ---
 
@@ -439,7 +460,7 @@ Hệ thống sử dụng dữ liệu này để AI xác định mức độ ưu 
 
 1. Hệ thống hiển thị câu hỏi về mức độ quen thuộc với kiến thức.
 2. Hệ thống hiển thị năm mức độ hiểu biết.
-3. Học sinh chọn mức độ Discribe đúng nhất hiểu biết hiện tại của mình.
+3. Học sinh chọn mức độ mô tả đúng nhất hiểu biết hiện tại của mình.
 4. Hệ thống ghi nhận mức độ đã chọn.
 5. Hệ thống liên kết mức độ với môn học, tài liệu hoặc chủ đề tương ứng.
 6. AI nhận thông tin đánh giá để cá nhân hóa.
@@ -482,7 +503,8 @@ Cho phép học sinh tải lên một hoặc nhiều tài liệu học tập đ�
 - Loại tệp.
 - Dung lượng tệp.
 - Môn học đã chọn.
-
+- Dữ liệu từ bước trước: ngôn ngữ đầu ra, môn học, mục tiêu
+  
 **Các loại tệp được hỗ trợ:**
 
 - PDF.
@@ -505,9 +527,10 @@ Cho phép học sinh tải lên một hoặc nhiều tài liệu học tập đ�
 **Output:**
 
 - Danh sách tài liệu đã tải lên.
-- Siêu dữ liệu của tệp.
-- Trạng thái tải lên.
-- Mã tài liệu.
+- Tài liệu được lưu và trích xuất thành công thành văn bản để AI xử lý.
+- Nội dung văn bản sạch, có cấu trúc, chuyển cho AI chia chủ đề.
+- Cập nhật số lần tải lên còn lại.
+- Thông báo thành công hoặc lỗi cụ thể.
 
 **Business rule:**
 
@@ -528,7 +551,9 @@ Cho phép học sinh tải lên một hoặc nhiều tài liệu học tập đ�
 - Gián đoạn khi tải lên: Hệ thống đánh dấu việc tải lên là thất bại và cho phép thử lại.
 - Lỗi kho lưu trữ: Hệ thống thông báo cho người dùng.
 - Tệp trùng lặp: Hệ thống cảnh báo người dùng và áp dụng chính sách Processing trùng lặp đã cấu hình.
-- Chưa tải tệp nào: Hệ thống yêu cầu ít nhất một tài liệu nếu việc tải lên là bắt buộc.
+- File có mật khẩu bảo vệ: Báo không đọc được, yêu cầu gỡ mật khẩu
+- Chưa tải tệp nào: Hệ thống yêu cầu ít nhất một tài liệu (bắt buộc).
+- Mất mạng khi đang tải: Cho thử lại, không trừ lượt nếu chưa hoàn tất
 
 ---
 
@@ -540,11 +565,10 @@ Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đ�
 
 **Input:**
 
-- Danh sách tài liệu đã tải lên.
+- Tệp do người dùng chọn
 - Định dạng tệp.
 - Dung lượng tệp.
 - Nội dung tệp.
-- Siêu dữ liệu của tệp.
 
 **Processing:**
 
@@ -570,14 +594,14 @@ Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đ�
 
 1. Kiểm tra tài liệu có chứa nội dung đọc được hay không.
 2. Phát hiện tài liệu rỗng hoặc trống.
-3. Xác định các tệp có nội dung không đủ.
-4. Phát hiện các tệp có khả năng trùng lặp.
+3. Phát hiện các tệp có khả năng trùng lặp.
 
 **Output:**
 
 - Kết quả kiểm tra tệp.
 - Danh sách tài liệu hợp lệ.
 - Danh sách tài liệu không hợp lệ.
+- Lý do không hợp lệ, kèm cách khắc phục.
 - Danh sách cảnh báo tài liệu.
 
 **Business rule:**
@@ -590,9 +614,9 @@ Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đ�
 | BR04 | Phát hiện nội dung rỗng: Hệ thống phải phát hiện tài liệu không chứa nội dung có thể đọc được. |
 | BR05 | Phát hiện trùng lặp: Hệ thống có thể phát hiện các tài liệu trùng lặp. |
 | BR06 | Kiểm tra độc lập: Hệ thống kiểm tra từng tệp độc lập khi người dùng tải nhiều tệp. |
+| BR07 | Khi tệp không hợp lệ, hệ thống hiển thị lý do cụ thể và hướng dẫn cách khắc phục. |
 | BR07 | Phân loại kết quả kiểm tra: Tài liệu được phân loại thành Hợp lệ, Không hợp lệ hoặc Cần xem xét. |
-| BR08 | Hạn chế Processing: Chỉ tài liệu đáp ứng điều kiện Processing mới được chuyển sang bước Processing tài liệu bằng AI. |
-| BR09 | Thông báo người dùng: Hệ thống phải thông báo kết quả kiểm tra cho người dùng. |
+| BR08 | Hạn chế xử lý: Chỉ tài liệu đáp ứng điều kiện xử lý mới được chuyển sang bước xử lý tài liệu bằng AI. |
 
 **Exception Handling:**
 
@@ -601,11 +625,11 @@ Kiểm tra định dạng, dung lượng, tính toàn vẹn và khả năng đ�
 - Tài liệu được bảo vệ bằng mật khẩu: Hệ thống yêu cầu phiên bản có thể truy cập hoặc mật khẩu nếu được hỗ trợ.
 - Tệp chỉ đọc được một phần: Hệ thống đánh dấu tệp là Cần xem xét.
 - Tài liệu trùng lặp: Hệ thống cảnh báo người dùng và cho phép họ giữ hoặc xóa bản trùng lặp.
-- Lỗi dịch vụ kiểm tra: Hệ thống báo lỗi và cho phép Processing lại.
+- Lỗi dịch vụ kiểm tra: Hệ thống báo lỗi và cho phép xử lý lại.
 
 ---
 
-## F09. Phân tích tài liệu bằng AI
+## ASP-09. Phân tích tài liệu bằng AI
 
 **Discribe:**
 
@@ -691,7 +715,7 @@ Sử dụng AI để đọc, trích xuất và phân tích nội dung từ các 
 
 ---
 
-## F10. Phân loại và tổ chức chủ đề
+## ASP-10. Phân loại và tổ chức chủ đề
 
 **Discribe:**
 
@@ -755,7 +779,7 @@ Sử dụng AI để phân loại và tổ chức các kiến thức được tr
 
 ---
 
-## F11. Tạo và xem xét danh sách chủ đề
+## ASP-11. Tạo và xem xét danh sách chủ đề
 
 **Discribe:**
 
@@ -834,7 +858,7 @@ Tạo danh sách chủ đề học tập từ kết quả phân loại của AI 
 
 ---
 
-## F12. Lựa chọn trọng tâm học tập
+## ASP-12. Lựa chọn trọng tâm học tập
 
 **Discribe:**
 
@@ -881,7 +905,7 @@ Cho phép học sinh lựa chọn các chủ đề cần tập trung nhiều nh�
 
 ---
 
-## F13. Tạo lịch học bằng AI
+## ASP-13. Tạo lịch học bằng AI
 
 **Discribe:**
 
@@ -974,7 +998,7 @@ Sử dụng AI để xây dựng lịch học tập cá nhân hóa bằng cách 
 
 ---
 
-## F14. Xem xét và lưu kế hoạch học tập
+## ASP-14. Xem xét và lưu kế hoạch học tập
 
 **Discribe:**
 
