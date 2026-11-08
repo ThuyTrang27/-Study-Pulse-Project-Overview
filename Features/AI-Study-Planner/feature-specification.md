@@ -85,14 +85,14 @@ Kế hoạch học tập AI được phân rã thành 5 nhóm nghiệp vụ chí
 ## 3.1. Luồng tổng quát
 
 Quy trình bắt đầu khi học sinh truy cập Kế hoạch học tập AI và cung cấp các thông tin cần thiết.
-Hệ thống tiếp nhận dữ liệu, Processing tài liệu bằng AI, tổ chức danh sách chủ đề và cuối cùng tạo kế hoạch học tập cá nhân hóa.
+Hệ thống tiếp nhận dữ liệu, Xử lý tài liệu bằng AI, tổ chức danh sách chủ đề và cuối cùng tạo kế hoạch học tập cá nhân hóa.
 
 ### Luồng chính
 
 1. Học sinh truy cập Kế hoạch học tập AI.
 2. Hệ thống hiển thị quy trình thiết lập học tập.
 3. Học sinh cung cấp thông tin học tập cá nhân.
-4. Học sinh chọn ngôn ngữ Output.
+4. Học sinh chọn ngôn ngữ đầu ra.
 5. Học sinh thiết lập mục tiêu học tập và điểm số mục tiêu.
 6. Học sinh cấu hình ngày thi và thời gian có thể học.
 7. Học sinh chọn phương thức học tập ưa thích.
